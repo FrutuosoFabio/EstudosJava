@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.fabio.todo.Repositories.TodoRepository;
@@ -17,11 +18,12 @@ public class TodoService {
     @Autowired
     private TodoRepository repository;
 
-    public todo findById(Integer id){
+    public todo findById(Integer Id){
+       
  
-        Optional<todo> obj=repository.findById(id);
+        Optional<todo> obj=repository.findById(Id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-            "Objeto Não Encontrado! id:" + id + ", Tipo:" + todo.class.getName(), null ));
+            "Objeto Não Encontrado! id:" + Id + ", Tipo:" + todo.class.getName(),null ));
     }
 
     public List<todo> findAllOpen() {
@@ -46,6 +48,15 @@ public class TodoService {
 
     public void delete(Integer id) {
       repository.deleteById(id);
+    }
+
+    public todo update(Integer id, todo obj) {
+        todo newObj = findById(id);
+        newObj.setTitulo(obj.getTitulo());
+        newObj.setDataParaFinalizar(obj.getDataParaFinalizar());
+        newObj.setDescricao(obj.getDescricao());;
+        newObj.setFinalizar(obj.getFinalizar());
+        return repository.save(newObj);
     }
 
     
