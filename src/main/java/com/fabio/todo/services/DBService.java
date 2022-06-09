@@ -1,4 +1,6 @@
 package com.fabio.todo.services;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -19,15 +21,15 @@ public class DBService {
   
 
     
-    public void istanciaBaseDeDados(){
+    public void istanciaBaseDeDados() throws ParseException{
 
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		todo t1 = new todo(null,"Estudar", "Estudar Spring Boot 2", LocalDateTime.parse("25/03/2022 10:40", formatter), false);
-        todo t2 = new todo(null,"Compras", "Compras do Mês", LocalDateTime.parse("25/03/2022 10:58", formatter), false);
-        todo t3 = new todo(null,"Vasco", "Da Gama", LocalDateTime.parse("25/03/2022 10:45", formatter), true);
-        todo t4 = new todo(null,"Fazer Notion", "Fazer anotações no Notion", LocalDateTime.parse("28/03/2022 08:40", formatter), true);
+		todo t1 = new todo(null,"Estudar", "Estudar Spring Boot 2", sdf.parse("25/03/2022"), false);
+        todo t2 = new todo(null,"Compras", "Compras do Mês", sdf.parse("25/03/2022"), false);
+        todo t3 = new todo(null,"Vasco", "Da Gama", sdf.parse("25/03/2022 10:45"), true);
+        todo t4 = new todo(null,"Fazer Notion", "Fazer anotações no Notion", sdf.parse("28/03/2022"), true);
 		todoRepository.saveAll(Arrays.asList(t1,t2,t3,t4));
     }
 
