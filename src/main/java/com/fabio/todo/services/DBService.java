@@ -28,7 +28,7 @@ public class DBService {
 		todo t1 = new todo(null,"Estudar", "Estudar Spring Boot 2", sdf.parse("25/03/2022"), false);
         todo t2 = new todo(null,"Compras", "Compras do Mês", sdf.parse("25/03/2022"), true);
         todo t3 = new todo(null,"Vasco", "Da Gama", sdf.parse("25/03/2022"), true);
-        todo t4 = new todo(null,"Fazer Notion", "Fazer anotações no Notion", sdf.parse("28/03/2022"), true);
+        todo t4 = new todo(null,"Fazer Notion", "Fazer anotações no Notion", sdf.parse("28/03/2022"), false);
 		todoRepository.saveAll(Arrays.asList(t1,t2,t3,t4));
     }
 
